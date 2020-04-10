@@ -1,7 +1,7 @@
 import App from './App/App'
-import BarChart from './BarChart/BarChart'
+import Details from './Details/Details'
 
 export{
   App,
-  BarChart
+  Details
 }

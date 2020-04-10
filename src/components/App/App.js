@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BarChart } from '../'
+import { Details } from '../'
 
 class App extends React.Component {
 
@@ -9,10 +9,12 @@ componentDidMount(){
 }
 
   render(){
-    console.log(this.props);
     // return this.props.hist ? <div> Received Data </div> : <div> Requesting Data </div>
     return (
-      <BarChart/>
+      <Details
+        data={this.props.hist}
+        symbol={this.props.symbol}
+      />
     )
   }
 }

@@ -9,6 +9,7 @@ const histData = (state = {}, action) => {
         hist: []
       }
     case RECEIVED_DATA:
+      localStorage.setItem("data", JSON.stringify(action.data))
       return {
         fetching: false,
         symbol: action.data.symbol,
