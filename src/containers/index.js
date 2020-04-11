@@ -1,5 +1,5 @@
-import App from './AppContainer'
+import Details from './DetailsContainer'
 
 export {
-  App
+  Details
 }

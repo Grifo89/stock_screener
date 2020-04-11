@@ -29,8 +29,10 @@ const handleQuoteData = (params) => {
 }
 
 
-export { 
+export {
   REQUESTING_DATA,
+  REQUESTING_QUOTE_DATA,
+  RECEIVED_QUOTE_DATA,
   RECEIVED_DATA,
   handleHistAsync,
   handleQuoteData

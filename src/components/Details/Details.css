@@ -12,3 +12,18 @@
 svg {
   width: 100%;
 }
+
+.row{
+  display: flex;
+}
+
+.details-info {
+  flex: 1
+}
+
+.details-graph {
+  flex: 2
+}
+.details-container {
+  display: flex;
+}
