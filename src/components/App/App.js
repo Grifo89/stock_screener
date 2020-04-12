@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Details } from '../../containers'
+import {Details, Screener}  from '../../containers'
+import NavBar from '../NavBar/NavBar'
+
 
 class App extends React.Component {
 
@@ -10,7 +12,10 @@ componentDidMount(){
 
   render(){
     return (
-      <Details/>
+      <div>
+        <NavBar/>
+        <Screener/>
+      </div>
     )
   }
 }
