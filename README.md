@@ -1,5 +1,5 @@
 ### Stock Screener
-This is a stock screener app build with React which consumes an API from https://fmpcloud.io/. With this app you can search daily Financial information about whatever listed company. This application follow the best coding practices like setting-up a code linter, using gitflow, testing business logic, writing good commit messages and an informative README. Also, it uses best practices in React & Redux development, like using a nice folder/files structure with good names and separate different types of components and services.
+This is a stock screener app build with React which consumes an API from https://fmpcloud.io/. With this app, you can search for daily Financial information about whatever listed company. This application follows the best coding practices like setting-up a code linter, using gitflow, testing business logic, writing good commit messages and an informative README. Also, it uses best practices in React & Redux development, like using a nice folder/files structure with good names and separate different types of components and services.
 
 > This is part of the capstone project part from Microverse Program https://www.notion.so/Catalogue-of-Dog-Clothes-8bf1512b8ab34fa28848beb8ab698a32.
 
