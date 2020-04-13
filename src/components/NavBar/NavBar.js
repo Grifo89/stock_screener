@@ -1,40 +1,66 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import './NavBar.css';
 
 class NavBar extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      input: ''
-    }
-    this.handleOnChange = this.handleOnChange.bind(this)
+      input: '',
+    };
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleOnChange(event){
+  handleOnChange(event) {
     this.setState({
-      input: event.target.value
-    })
+      input: event.target.value,
+    });
   }
 
-  render(){
-    console.log(this.state.input);
-    return(
+  handleClick() {
+    const { symbol } = this.props;
+    const { input } = this.state;
+    symbol(input);
+    this.setState({
+      input: '',
+    });
+  }
+
+  render() {
+    const { input } = this.state;
+    return (
       <div className="topnav">
-        <a className="logo" href="#home">Stock Screener!</a>
+        <Link className="logo" to="/">Stock Screener!</Link>
         <div className="search-container">
           <form action="/action_page.php">
             <input
-            type="text"
-            placeholder="Search.."
-            name="search"
-            onChange={this.handleOnChange}
+              type="text"
+              placeholder="Search.."
+              name="search"
+              onChange={this.handleOnChange}
+              value={input}
+              className="searchTerm"
             />
-            <button type="submit"><i className="fa fa-search"></i></button>
+            <Link to={`/details/${input.toUpperCase()}`}>
+              <button
+                type="submit"
+                onClick={this.handleClick}
+                className="searchButton"
+              >
+                <i className="fa fa-search" />
+              </button>
+            </Link>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default NavBar
+NavBar.propTypes = {
+  symbol: PropTypes.string.isRequired,
+};
+
+export default NavBar;

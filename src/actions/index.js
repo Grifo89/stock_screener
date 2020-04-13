@@ -1,47 +1,49 @@
-const REQUESTING_DATA = 'REQUESTING_DATA'
-const RECEIVED_DATA = 'RECEIVED_DATA'
-const REQUESTING_QUOTE_DATA = 'REQUESTING_QUOTE_DATA'
-const RECEIVED_QUOTE_DATA = 'RECEIVED_QUOTE_DATA'
-const REQUESTING_SCREENER_DATA = 'REQUESTING_SCREENER_DATA'
-const RECEIVED_SCREENER_DATA = 'RECEIVED_SCREENER_DATA'
+import { API_KEY } from '../apiKey';
 
-const requestingData = () => { return {type: REQUESTING_DATA} }
-const receivedData = (data) => { return {type: RECEIVED_DATA, data: data} }
-const requestingQuoteData = () => { return {type: REQUESTING_QUOTE_DATA}}
-const receivedQuoteData = (data) => { return {type: RECEIVED_QUOTE_DATA, data: data}}
-const requestingScreenerData = () => { return {type: REQUESTING_SCREENER_DATA}}
-const receivedScreenerData = (data) => { return {type: RECEIVED_SCREENER_DATA, data: data}}
+const REQUESTING_DATA = 'REQUESTING_DATA';
+const RECEIVED_DATA = 'RECEIVED_DATA';
+const REQUESTING_QUOTE_DATA = 'REQUESTING_QUOTE_DATA';
+const RECEIVED_QUOTE_DATA = 'RECEIVED_QUOTE_DATA';
+const REQUESTING_SCREENER_DATA = 'REQUESTING_SCREENER_DATA';
+const RECEIVED_SCREENER_DATA = 'RECEIVED_SCREENER_DATA';
+
+const requestingData = () => ({ type: REQUESTING_DATA });
+const receivedData = data => ({ type: RECEIVED_DATA, data });
+const requestingQuoteData = () => ({ type: REQUESTING_QUOTE_DATA });
+const receivedQuoteData = data => ({ type: RECEIVED_QUOTE_DATA, data });
+const requestingScreenerData = () => ({ type: REQUESTING_SCREENER_DATA });
+const receivedScreenerData = data => ({ type: RECEIVED_SCREENER_DATA, data });
 
 
-const handleHistAsync = (params) => {
-  return async function(dispatch) {
-    dispatch(requestingData())
-    let response = await fetch('https://fmpcloud.io/api/v3/historical-price-full/AAPL?serietype=line&apikey=demo')
-    let data = await response.json()
-    dispatch(receivedData(data))
-
-    // https://fmpcloud.io/api/v3/historical-price-full/AAPL?serietype=line&apikey=f6122bb1d358bf83d3df735b832d1204
-  }
+const handleHistAsync = params => {
+  const paramsUpperCase = params.toUpperCase();
+  const url = `https://fmpcloud.io/api/v3/historical-price-full/${API_KEY.length === 0 ? 'AAPL' : paramsUpperCase}?serietype=line&apikey=${API_KEY.length === 0 ? 'demo' : API_KEY}`;
+  return async function a(dispatch) {
+    dispatch(requestingData());
+    const response = await fetch(url, { mode: 'cors' });
+    const data = await response.json();
+    dispatch(receivedData(data));
+  };
 };
 
-const handleQuoteData = (params) => {
-  return async function(dispatch) {
-    dispatch(requestingQuoteData())
-    let response = await fetch('https://fmpcloud.io/api/v3/quote/AAPL?apikey=demo')
-    let data = await response.json()
-    dispatch(receivedQuoteData(data))
-  }
-}
+const handleQuoteData = params => {
+  const paramsUpperCase = params.toUpperCase();
+  const url = `https://fmpcloud.io/api/v3/quote/${API_KEY.length === 0 ? 'AAPL' : paramsUpperCase}?apikey=${API_KEY.length === 0 ? 'demo' : API_KEY}`;
+  return async function a(dispatch) {
+    dispatch(requestingQuoteData());
+    const response = await fetch(url, { mode: 'cors' });
+    const data = await response.json();
+    dispatch(receivedQuoteData(data));
+  };
+};
 
-const handleScreenerData = (params) => {
-  return async function(dispatch) {
-    dispatch(requestingScreenerData())
-    let response = await fetch('https://fmpcloud.io/api/v3/stock-screener?volumeLowerThan=1000&limit=100&apikey=f6122bb1d358bf83d3df735b832d1204')
-    let data = await response.json()
-    dispatch(receivedScreenerData(data))
-  }
-}
-
+const handleScreenerData = () => async function a(dispatch) {
+  const url = `https://fmpcloud.io/api/v3/stock-screener?volumeLowerThan=1000&limit=100&apikey=${API_KEY.length === 0 ? 'demo' : API_KEY}`;
+  dispatch(requestingScreenerData());
+  const response = await fetch(url, { mode: 'cors' });
+  const data = await response.json();
+  dispatch(receivedScreenerData(data));
+};
 
 
 export {
@@ -53,5 +55,5 @@ export {
   REQUESTING_SCREENER_DATA,
   handleScreenerData,
   handleHistAsync,
-  handleQuoteData
-}
+  handleQuoteData,
+};

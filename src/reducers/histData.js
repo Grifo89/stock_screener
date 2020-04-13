@@ -1,4 +1,4 @@
-import { RECEIVED_DATA, REQUESTING_DATA } from '../actions'
+import { RECEIVED_DATA, REQUESTING_DATA } from '../actions';
 
 const histData = (state = {}, action) => {
   switch (action.type) {
@@ -6,18 +6,17 @@ const histData = (state = {}, action) => {
       return {
         fetching: true,
         symbol: '',
-        hist: []
-      }
+        hist: [],
+      };
     case RECEIVED_DATA:
-      localStorage.setItem("data", JSON.stringify(action.data))
       return {
         fetching: false,
         symbol: action.data.symbol,
-        hist: action.data.historical
-      }
+        hist: action.data.historical,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default histData
+export default histData;

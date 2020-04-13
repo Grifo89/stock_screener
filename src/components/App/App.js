@@ -1,22 +1,38 @@
 import React from 'react';
 import './App.css';
-import {Details, Screener}  from '../../containers'
-import NavBar from '../NavBar/NavBar'
+import { Switch, Route } from 'react-router-dom';
+import { Details, Screener } from '../../containers';
+import NavBar from '../NavBar/NavBar';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      symbol: '',
+    };
+    this.changeSymbol = this.changeSymbol.bind(this);
+  }
 
-componentDidMount(){
+  changeSymbol(symbol) {
+    this.setState({
+      symbol,
+    });
+  }
 
-}
-
-  render(){
+  render() {
+    const { symbol } = this.state;
     return (
       <div>
-        <NavBar/>
-        <Screener/>
+        <NavBar
+          symbol={this.changeSymbol}
+        />
+        <Switch>
+          <Route exact path="/" component={() => <Screener symbol={this.changeSymbol} />} />
+          <Route path="/details/:ticket" component={() => <Details request={symbol} />} />
+        </Switch>
       </div>
-    )
+    );
   }
 }
 

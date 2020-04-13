@@ -1,6 +1,6 @@
-import { RECEIVED_QUOTE_DATA, REQUESTING_QUOTE_DATA } from '../actions'
+import { RECEIVED_QUOTE_DATA, REQUESTING_QUOTE_DATA } from '../actions';
 
-const quoteData = (state={}, action) => {
+const quoteData = (state = {}, action) => {
   switch (action.type) {
     case REQUESTING_QUOTE_DATA:
       return {
@@ -17,8 +17,8 @@ const quoteData = (state={}, action) => {
         open: 0,
         previousClose: 0,
         earningsAnnouncement: '',
-        timestamp: 0
-      }
+        timestamp: 0,
+      };
     case RECEIVED_QUOTE_DATA:
       return {
         name: action.data[0].name,
@@ -34,13 +34,12 @@ const quoteData = (state={}, action) => {
         open: action.data[0].open,
         previousClose: action.data[0].previousClose,
         earningsAnnouncement: action.data[0].earningsAnnouncement,
-        timestamp: action.data[0].timestamp
-      }
+        timestamp: action.data[0].timestamp,
+      };
 
     default:
-      return state
-
+      return state;
   }
-}
+};
 
-export default quoteData
+export default quoteData;

@@ -1,7 +1,7 @@
-import Details from './DetailsContainer'
-import Screener from './ScreenerContainer'
+import Details from './DetailsContainer';
+import Screener from './ScreenerContainer';
 
 export {
   Details,
-  Screener
-}
+  Screener,
+};
