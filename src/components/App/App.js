@@ -30,6 +30,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={() => <Screener symbol={this.changeSymbol} />} />
           <Route path="/details/:ticket" component={() => <Details request={symbol} />} />
+          <Route path="/" component={() => { window.location = 'https://fierce-ocean-38498.herokuapp.com/'; return null;}}/>
         </Switch>
       </div>
     );
