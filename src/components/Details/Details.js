@@ -172,7 +172,7 @@ Details.defaultProps = {
   volume: 0,
   exchange: '',
   previousClose: 0,
-  earningsAnnouncement: 0,
-}
+  earningsAnnouncement: 0
+};
 
 export default Details;

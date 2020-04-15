@@ -60,11 +60,8 @@ class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  symbol: PropTypes.string,
+  symbol: PropTypes.func.isRequired,
 };
 
-NavBar.defaultProps = {
-  symbol: '',
-};
 
 export default NavBar;

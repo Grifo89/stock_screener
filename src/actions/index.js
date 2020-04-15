@@ -38,11 +38,13 @@ const handleQuoteData = params => {
 };
 
 const handleScreenerData = () => async function a(dispatch) {
-  const url = `https://fmpcloud.io/api/v3/stock-screener?volumeLowerThan=1000&limit=100&apikey=${API_KEY.length === 0 ? 'demo' : API_KEY}`;
-  dispatch(requestingScreenerData());
-  const response = await fetch(url, { mode: 'cors' });
-  const data = await response.json();
-  dispatch(receivedScreenerData(data));
+  if (API_KEY.length !== 0) {
+    const url = `https://fmpcloud.io/api/v3/stock-screener?volumeLowerThan=1000&limit=100&apikey=${API_KEY}`;
+    dispatch(requestingScreenerData());
+    const response = await fetch(url, { mode: 'cors' });
+    const data = await response.json();
+    dispatch(receivedScreenerData(data));
+  }
 };
 
 

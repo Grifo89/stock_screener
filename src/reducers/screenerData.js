@@ -1,6 +1,6 @@
 import { RECEIVED_SCREENER_DATA, REQUESTING_SCREENER_DATA } from '../actions';
 
-const screenerData = (state = {}, action) => {
+const screenerData = (state = [], action) => {
   switch (action.type) {
     case REQUESTING_SCREENER_DATA:
       return {

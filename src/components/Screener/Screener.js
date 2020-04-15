@@ -50,7 +50,7 @@ class Screener extends Component {
     };
 
     // console.log(screener);
-    if (screener !== undefined && screener.length !== 0) {
+    if (screener.length !== 0 && screener.length !== 0) {
       sectors.map(sector => {
         const obj = filterSector(sector, screener);
         companiesAll.push(obj);
@@ -81,9 +81,12 @@ class Screener extends Component {
 }
 
 Screener.propTypes = {
-  requestScreenerData: PropTypes.func.isRequired,
-  symbol: PropTypes.string.isRequired,
-  screener: PropTypes.arrayOf.isRequired,
+  requestScreenerData: PropTypes.func,
+  symbol: PropTypes.func,
 };
+
+Screener.defaultProps = {
+  screener: []
+}
 
 export default Screener;
